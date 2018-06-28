@@ -2,14 +2,35 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>websocket</title>
+	<title>index</title>
 </head>
 <body>
+	<div id="app">
+		<p>{{data}}</p>
+	</div>
 
+<script src="https://cdn.bootcss.com/vue/2.5.14/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    
 
-<script>
-	var Socket = new WebSocket(url, [protocol] );
-	
+    var app = new Vue({
+    	el:'#app',
+    	data:{
+    		data:null
+    	},
+    	mounted:function(){
+    		var _this = this;
+    		axios.get('index.php')
+		    .then(function(res){
+		    	console.log(res.data.data);
+		    	_this.data = res.data.data[0]['Cap'];
+		    })
+		    .catch(function(res){
+
+		    })
+    	}
+    })
 </script>
 </body>
 </html>
